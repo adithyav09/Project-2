@@ -7,6 +7,12 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+
+        <!-- Step 1 - Include the fusioncharts core library -->
+        <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+        <!-- Step 2 - Include the fusion theme -->
+        <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+        
     
 </head>
 <body>
@@ -14,7 +20,7 @@
         <div class="row" style=color:yellowgreen >
             <div class="col-md-12 jumbotron text-center" >
                 <div class ="box">
-                    <marquee  behavior="scroll" direction="left">A place where you can find cheapest,nearest and your favorite Gas stations in your viccinity!!</marquee>
+                    <marquee  behavior="scroll" direction="left">A place where you can find cheapest,nearest and your favorite Gas stations  in your viccinity!!</marquee>
                 </div>
             </div>
         </div>
@@ -25,14 +31,16 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <div id="chart-container"></div>
             </div>
                 <div class="col-md-3">
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn">Filters</button>
                 <div id="myDropdown" class="dropdown-content">
-                  <a href="#">Prices</a>
-                  <a href="#">Viccinity</a>
-                  <a href="#">Brand Name</a>
+                  <a href="#" id="Price">Prices</a>
+                  <a href="#" id="Viccinity">Viccinity</a>
+                  <a href="#" id="Brand">Brand Name</a>
+                  <a href="#" id="Zipcode">Zip code</a>
                 </div>
               </div>
         </div>
@@ -40,6 +48,9 @@
         
 </div>
     <script src="app.js"></script>
+    
+    <!-- <script language='javascript' src='/opt/FONapache2/htdocs/inform/application/FusionCharts_Enterprise/JSClass/FusionCharts.js'></script> -->
+    
    
 </body>
 </html>
