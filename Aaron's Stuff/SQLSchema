@@ -1,0 +1,11 @@
+CREATE TABLE hist_gas_prices(
+	date DATE NOT NULL,
+	New_England FLOAT,
+	Central_Atlantic FLOAT,
+	Lower_Atlantic FLOAT,
+	Midwest FLOAT,
+	Gulf_Coast FLOAT,
+	Rocky_Mountain FLOAT,
+	West_Coast FLOAT,
+	West_Coast_No_Cali FLOAT
+);
