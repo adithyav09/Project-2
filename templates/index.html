@@ -12,7 +12,8 @@
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
         <!-- Step 2 - Include the fusion theme -->
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
-<link rel ="stylesheet" href ="style.css">
+<!-- <link rel ="stylesheet" href ="style.css"> -->
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
         
     
 </head>
@@ -42,25 +43,36 @@
         </div>
     <div class="row">
         <div class="col-md-3">
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Filters</button>
-                <div id="myDropdown" class="dropdown-content">
-                  <a href="#" id="Price">Prices</a>
-                  <a href="#" id="Viccinity">Viccinity</a>
-                  <a href="#" id="Brand">Brand Name</a>
-                  <a href="#" id="Zipcode">Zip code</a>
+            <aside class="filters">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Filter Search</div>
+                  <div class="panel-body">
+                    <form>
+                      <div class="form-group">
+                        <ul class="list-group" id="filters">
+                          <li class="filter list-group-item">
+                            <label for="ZipCode">Enter a Date</label>
+                            <input class="form-control"  id="Zip" type="text" onclick="ZipFunction(this)"placeholder="98109"  />
+                            <label for="Year">For Comparison Enter a Year</label>
+                            <input class="form-control"  id="Year" type="text" placeholder="2010" onclick="YearFunction(this)" />
+                          </li>
+                        </ul>
+                      </div>
+                    </form>
                 </div>
               </div>
-        </div>
-
+            </aside>
+          </div>
             <div class="col-md-6">
+                <div class="Gas">
                 <h4>Gasoline Prices:{{ Gasoline_data.gasoline }}</h4>
                 <h4>Midgrade Prices:{{ Gasoline_data.midGrade }}</h4>
                 <h4>Premium Prices:{{ Gasoline_data.premium }}</h4>
                 <h4>Diesel Prices:{{ Gasoline_data.diesel }}</h4>
             </div>
+        </div>
             <div class="col-md-3 ">
-                <div class ="box" style=color:yellow>
+                <div class ="box" >
                     <iframe src="https://giphy.com/embed/l4Ki9kSidioZfrENa" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/art-design-illustration-l4Ki9kSidioZfrENa"></a></p>
                 </div>
             </div>
@@ -68,7 +80,8 @@
         
 </div>
 
-    <script src="app.js"></script>
+    <script type ="text/javascript " src="../static/js/app.js"></script>
+   
     
     
     <!-- <script language='javascript' src='/opt/FONapache2/htdocs/inform/application/FusionCharts_Enterprise/JSClass/FusionCharts.js'></script> -->

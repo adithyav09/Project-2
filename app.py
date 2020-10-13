@@ -108,9 +108,15 @@ def Update():
 
 @app.route("/Charts")
 def addnew():
-    return render_template('chord.html')
+    return render_template('charts.html')
 
+@app.route("/News")
+def addNews():
+    return render_template('News.html')
 
+@app.route("/About")
+def About():
+    return render_template('About.html')
     
 
    

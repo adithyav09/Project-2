@@ -2,8 +2,8 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 12px;
     line-height: 1.42857143;
-    color: #333;
-    background-color:thistle;
+    color:white;
+    background-color:rgb(35, 42, 78);
 }
 
 .jumbotron {
@@ -11,8 +11,7 @@ body {
     padding-bottom: 30px;
     margin-bottom: 30px;
     color: inherit;
-    background-color: #eee;
-    background-image: url('images/DoanldDuck.mp4');
+    background-color:rgb(53, 67, 109);
     font-size: 200%;
    
 }
