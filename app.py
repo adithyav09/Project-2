@@ -1,6 +1,6 @@
 import requests
 zipapi ="ZVp42kUmPdgG4Na8hYyYEPlhx6cwKcmVZcrDu69nRtPLxcRO92qZFTrkipqJD8dy"
-zipcode = "31402"
+zipcode = "31405"
 zipurl = f"https://www.zipcodeapi.com/rest/{zipapi}/info.json/{zipcode}/degrees"
 
 response = requests.get(zipurl).json()
@@ -9,17 +9,10 @@ for k in response:
 
 print(response)
 # response
-# import http.client
+import http.client
 
-# conn = http.client.HTTPSConnection("api.collectapi.com")
 
-# headers = {
-#     'content-type': "application/json",
-#     'authorization': "apikey 2NAsuESfcMYcaZ1u3iKmSA:31uTFgKBBkDBiQ0uHgGpID"
-#     }
 
-# collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
-# collecturl
 # from flask import Flask,render_template
 # from flask_mongoengine import MongoEngine
 # import json
@@ -91,9 +84,24 @@ def index():
 #create route that does the scrape and stored the returned value in Mongodb    
 @app.route("/update")
 def Update():
-    data=response
+    conn = http.client.HTTPSConnection("api.collectapi.com")
+    
+    headers = {
+    'content-type': "application/json",
+    'authorization': "apikey 2NAsuESfcMYcaZ1u3iKmSA:31uTFgKBBkDBiQ0uHgGpID"
+    }
+
+    collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
+    conn.request("GET",collecturl,headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+
+    print(data.decode("utf-8"))
+
+    # data=response
     # collection.insert_one(data)
     collection.update({},data,upsert=True)
+ 
     return redirect("/",code=302)
 
 
