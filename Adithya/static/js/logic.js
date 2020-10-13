@@ -18,10 +18,69 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // Use this link to get the geojson data.
 var link = "static/data/statesData.geojson";
 
+
+var geojson;
+var popup;
+
+d3.json('static/data/gasPriceState.json', function(data) {
+    console.log(data);
+});
+
 // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
+
   // Creating a GeoJSON layer with the retrieved data
-  L.geoJson(data).addTo(map);
+  geojson = L.choropleth(data, {
+
+
+
+    
+}).addTo(map);  
+
+
+
+  function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+}
+
+  // Set up the legend
+//   var legend = L.control({ position: "bottomright" });
+//   legend.onAdd = function() {
+//     var div = L.DomUtil.create("div", "info legend");
+//     var limits = geojson.options.limits;
+//     var colors = geojson.options.colors;
+//     var labels = [];
+
+//     // Add min & max
+//     var legendInfo = "<h1>Gas Price Ranges</h1>" +
+//       "<div class=\"labels\">" +
+//         "<div class=\"min\">" + limits[0] + "</div>" +
+//         "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
+//       "</div>";
+
+//     div.innerHTML = legendInfo;
+
+//     limits.forEach(function(limit, index) {
+//       labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+//     });
+
+//     div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+//     return div;
+//   };
+
+//   // Adding legend to the map
+//   legend.addTo(map);
   
 });
 
