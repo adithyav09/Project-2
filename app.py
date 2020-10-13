@@ -1,6 +1,6 @@
 import requests
 zipapi ="ZVp42kUmPdgG4Na8hYyYEPlhx6cwKcmVZcrDu69nRtPLxcRO92qZFTrkipqJD8dy"
-zipcode = "98109"
+zipcode = "31402"
 zipurl = f"https://www.zipcodeapi.com/rest/{zipapi}/info.json/{zipcode}/degrees"
 
 response = requests.get(zipurl).json()
@@ -20,38 +20,95 @@ print(response)
 
 # collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
 # collecturl
-from flask import Flask,render_template
-from flask_mongoengine import MongoEngine
-import json
-app = Flask(__name__)
+# from flask import Flask,render_template
+# from flask_mongoengine import MongoEngine
+# import json
+# app = Flask(__name__)
 
-app.config['MONGODB_SETTINGS'] = {
-    'db': 'Gasoline',
-    'host': 'localhost',
-    'port': 27017
-}
-db = MongoEngine()
-db.init_app(app)
-@app.route('/')
-def Update ():
-    class User(db.Document):
-        city = db.StringField()
-        state = db.StringField()
-        acceptable_city_names=db.StringField()
-        timezone =db.StringField()
-        zip_code =db.StringField()
-        area_codes=db.StringField()
-        lng=db.StringField()
-        lat=db.StringField()
-        # from_json(response, created=False)
-    User = User.from_json(json.dumps(response))
-    User.save()
-    # User.update()
-        # print User.to_json()
-    return render_template("index.html", Gasoline_data=User)
+# app.config['MONGODB_SETTINGS'] = {
+#     'db': 'Gasoline',
+#     'host': 'localhost',
+#     'port': 27017
+# }
+# db = MongoEngine()
+# db.init_app(app)
+# @app.route('/')
+# def Update ():
+#     class User(db.Document):
+#         city = db.StringField()
+#         state = db.StringField()
+#         acceptable_city_names=db.StringField()
+#         timezone =db.StringField()
+#         zip_code =db.StringField()
+#         area_codes=db.StringField()
+#         lng=db.StringField()
+#         lat=db.StringField()
+#         # from_json(response, created=False)
+#     User = User.from_json(json.dumps(response))
+#     User.save()
+#     # User.update()
+#         # print User.to_json()
+#     return render_template("index.html", Gasoline_data=User)
 
 # User.objects(name="alice").first()
 # User(name='laura', email='laura@gmail.com').save()
 
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+# import necessary libraries
+from flask import Flask, render_template,redirect
+#import scrape_mars
+import pymongo
+# import scrape_mars
+
+
+
+# Initialize PyMongo to work with MongoDBs
+conn = 'mongodb://localhost:27017'
+client = pymongo.MongoClient(conn)
+
+# Define database and collection
+db = client.Gas_Data
+collection = db.State_Data
+
+
+
+# create instance of Flask app
+app = Flask(__name__)
+
+
+
+# create route that renders index.html template
+@app.route("/")
+def index():
+    data = list(collection.find())
+    print(type(data[-1]))
+    print(data[-1])
+    return render_template("index.html", Gasoline_data=data[-1])
+     
+
+#create route that does the scrape and stored the returned value in Mongodb    
+@app.route("/update")
+def Update():
+    data=response
+    # collection.insert_one(data)
+    collection.update({},data,upsert=True)
+    return redirect("/",code=302)
+
+
+    
+
+   
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
+
+
+
+
