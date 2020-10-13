@@ -1,9 +1,10 @@
-<html>
+/* <html>
 <head>
 	<title>My first chart using FusionCharts Suite XT</title>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript"> */
+
 		FusionCharts.ready(function(){
 			var chartObj = new FusionCharts({
     type: 'multilevelpie',
@@ -175,9 +176,9 @@
 
 			chartObj.render();
 		});
-	</script>
-	</head>
-	<body>
-		<div id="chart-container">FusionCharts XT will load here!</div>
-	</body>
-</html>
+// 	</script>
+// 	</head>
+// 	<body>
+// 		<div id="chart-container">FusionCharts XT will load here!</div>
+// 	</body>
+// </html>

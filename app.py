@@ -1,63 +1,23 @@
 import requests
-zipapi ="ZVp42kUmPdgG4Na8hYyYEPlhx6cwKcmVZcrDu69nRtPLxcRO92qZFTrkipqJD8dy"
-zipcode = "31405"
-zipurl = f"https://www.zipcodeapi.com/rest/{zipapi}/info.json/{zipcode}/degrees"
-
-response = requests.get(zipurl).json()
-# for k in response:
-#     response[k] = str(response[k])
-
-print(response)
-# response
 import http.client
-
-
-
-# from flask import Flask,render_template
-# from flask_mongoengine import MongoEngine
-# import json
-# app = Flask(__name__)
-
-# app.config['MONGODB_SETTINGS'] = {
-#     'db': 'Gasoline',
-#     'host': 'localhost',
-#     'port': 27017
-# }
-# db = MongoEngine()
-# db.init_app(app)
-# @app.route('/')
-# def Update ():
-#     class User(db.Document):
-#         city = db.StringField()
-#         state = db.StringField()
-#         acceptable_city_names=db.StringField()
-#         timezone =db.StringField()
-#         zip_code =db.StringField()
-#         area_codes=db.StringField()
-#         lng=db.StringField()
-#         lat=db.StringField()
-#         # from_json(response, created=False)
-#     User = User.from_json(json.dumps(response))
-#     User.save()
-#     # User.update()
-#         # print User.to_json()
-#     return render_template("index.html", Gasoline_data=User)
-
-# User.objects(name="alice").first()
-# User(name='laura', email='laura@gmail.com').save()
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
 # import necessary libraries
-from flask import Flask, render_template,redirect
+from flask import Flask, render_template,redirect,request
 #import scrape_mars
 import pymongo
 import json
 # import scrape_mars
 
 
+zipapi = "ZVp42kUmPdgG4Na8hYyYEPlhx6cwKcmVZcrDu69nRtPLxcRO92qZFTrkipqJD8dy"
+zipcode = "98109"
+zipurl = f"https://www.zipcodeapi.com/rest/{zipapi}/info.json/{zipcode}/degrees"
+response = requests.get(zipurl).json()
 
+# # for k in response:
+# #     response[k] = str(response[k])
+
+# print(response)
+# # response
 # Initialize PyMongo to work with MongoDBs
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
@@ -66,12 +26,8 @@ client = pymongo.MongoClient(conn)
 db = client.Gas_Data
 collection = db.State_Data
 
-
-
 # create instance of Flask app
 app = Flask(__name__)
-
-
 
 # create route that renders index.html template
 @app.route("/")
@@ -118,7 +74,10 @@ def addNews():
 def About():
     return render_template('About.html')
     
-
+@app.route("/zipcode", methods=["POST"])
+def zip():
+    zipcode = request.form['zipcode']
+    return zipcode
    
 if __name__ == "__main__":
     app.run(debug=True)

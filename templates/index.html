@@ -52,7 +52,7 @@
                         <ul class="list-group" id="filters">
                           <li class="filter list-group-item">
                             <label for="ZipCode">Enter a Date</label>
-                            <input class="form-control"  id="Zip" type="text" onclick="ZipFunction(this)"placeholder="98109"  />
+                            <input class="form-control"  id="Zip" type="text" onchange="ZipFunction(this)"placeholder="98109"  />
                             <label for="Year">For Comparison Enter a Year</label>
                             <input class="form-control"  id="Year" type="text" placeholder="2010" onclick="YearFunction(this)" />
                           </li>
@@ -64,11 +64,28 @@
             </aside>
           </div>
             <div class="col-md-6">
-                <div class="Gas">
-                <h4>Gasoline Prices:{{ Gasoline_data.gasoline }}</h4>
+                <!-- <div class="Gas"> -->
+                    <div id="table-area" class="">
+                        <table id="ufo-table" class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th class="table-head">Gasoline</th>
+                              <th class="table-head">Midgrade</th>
+                              <th class="table-head">Premium</th>
+                              <th class="table-head">Diesel</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <td>{{ Gasoline_data.gasoline }}</td>
+                              <td>{{ Gasoline_data.midGrade }}</td>
+                              <td>{{ Gasoline_data.premium }}</td>
+                              <td>{{ Gasoline_data.diesel }}</td>
+                          </tbody>
+                        </table>
+                <!-- <h4>Gasoline Prices:{{ Gasoline_data.gasoline }}</h4>
                 <h4>Midgrade Prices:{{ Gasoline_data.midGrade }}</h4>
                 <h4>Premium Prices:{{ Gasoline_data.premium }}</h4>
-                <h4>Diesel Prices:{{ Gasoline_data.diesel }}</h4>
+                <h4>Diesel Prices:{{ Gasoline_data.diesel }}</h4> -->
             </div>
         </div>
             <div class="col-md-3 ">
@@ -81,6 +98,7 @@
 </div>
 
     <script type ="text/javascript " src="../static/js/app.js"></script>
+    <script type ="text/javascript " src="../New/chord.js"></script>
    
     
     
