@@ -1,176 +1,98 @@
-// Creating our initial map object
-var mapboxAccessToken = "pk.eyJ1IjoiYWRpdGh5YXYiLCJhIjoiY2tmb2pqcmJsMXd6czJzbWpsYnhsZTVvbiJ9.XsNkSPXCk0EJ6lnjsNdU8Q";
+// https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json
 
-// We set the longitude, latitude, and the starting zoom level
-// This gets inserted into the div with an id of 'map'
-var map = L.map('map').setView([39.82, -98.58], 5);
+let statesFile = 'https://d3js.org/us-10m.v1.json'
+let gasPriceStateFile = 'static/data/gasPriceState.json'
 
+let statesData
+let gasPriceData
 
-// Adding a tile layer (the background map image) to our map
-// We use the addTo method to add objects to our map
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
-    id: 'mapbox/light-v9',
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    zoomOffset: -1
-}).addTo(map);
+let canvas = d3.select('#canvas')
+let tooltip = d3.select('#tooltip')
 
-// Use this link to get the geojson data.
-var link = "static/data/statesData.geojson";
+let drawMap = () => {
 
+    canvas.selectAll('path')
+        .data(statesData)
+        .enter()
+        .append('path')
+        .attr('d', d3.geoPath())
+        .attr('class', 'states')
+        .attr('fill', (statesDataItem) => {
+            let id = statesDataItem['id']
+            let state = gasPriceData.find((item) => {
+                return item['id'] === id         
+            })
+            let gasPriceAverage = (parseFloat(state['gasoline']) + parseFloat(state['midGrade']) + parseFloat(state['premium']) + parseFloat(state['diesel'])) / 4
+            console.log(gasPriceAverage)
+            let regular = parseFloat(state['gasoline'])
+            if (gasPriceAverage >= 3.260 || gasPriceAverage <= 2.374) {
+                return 'tomato'
+            } else if (gasPriceAverage >= 2.373 || gasPriceAverage <= 2.206) {
+                return 'orange'
+            } else if (gasPriceAverage >= 2.205 || gasPriceAverage <= 2.104) {
+                return 'green'
+            } else if (gasPriceAverage >= 2.103 || gasPriceAverage <= 1.994) {
+                return 'limegreen'
+            } else if (gasPriceAverage >= 1.993 || gasPriceAverage <= 1.857) {
+                return 'purple'
+            }
+            // 2.205 to 2.104
+            // 2.103 to 1.994
+            // 1.993 to 1.857
 
-var geojson;
-var popup;
+        })
+        .attr('data-fips', (statesDataItem) => {
+            return statesDataItem['id']
+        })
+        .attr('data-gasPrices', (statesDataItem) => {
+            let id = statesDataItem['id']
+            let state = gasPriceData.find((item) => {
+                return item['id'] === id         
+            })
+        })
+        .on('mouseover', (statesDataItem) => {
+            tooltip.transition()
+                .style('visibility', 'visible')
 
-d3.json('static/data/gasPriceState.json', function(data) {
-    console.log(data);
-});
-
-// Grabbing our GeoJSON data..
-d3.json(link, function(data) {
-
-  // Creating a GeoJSON layer with the retrieved data
-  geojson = L.choropleth(data, {
-
-
-
-    
-}).addTo(map);  
-
-
-
-  function highlightFeature(e) {
-    var layer = e.target;
-
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
+            let id = statesDataItem['id']
+            let state = gasPriceData.find((item) => {
+                return item['id'] === id         
+            })
+            tooltip.text("Gasoline Price: $" + state['gasoline'] + 
+                        " Mid-Grade Price: $" + state['midGrade'] + 
+                        " Premium Price: $" + state['premium'] + 
+                        " Diesel Price: $"+ state['diesel'])
+        })
+        .on('mouseout', (statesDataItem) => {
+            tooltip.transition()
+                .style('visibility', 'hidden')
+        })
 }
 
-  // Set up the legend
-//   var legend = L.control({ position: "bottomright" });
-//   legend.onAdd = function() {
-//     var div = L.DomUtil.create("div", "info legend");
-//     var limits = geojson.options.limits;
-//     var colors = geojson.options.colors;
-//     var labels = [];
+d3.json(statesFile).then(
+    (data, error) => {
+        if(error){
+            console.log(error)
+        }else{
+            // statesData = data
+            statesData = topojson.feature(data, data.objects.states).features
+            console.log(statesData)
+            
 
-//     // Add min & max
-//     var legendInfo = "<h1>Gas Price Ranges</h1>" +
-//       "<div class=\"labels\">" +
-//         "<div class=\"min\">" + limits[0] + "</div>" +
-//         "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-//       "</div>";
+            d3.json(gasPriceStateFile).then(
+                (data, error) => {
+                    if(error){
+                        console.log(error)
+                    }
+                    else{
+                        gasPriceData = data
+                        console.log('Gas Price Data')
+                        console.log(gasPriceData)
+                        drawMap()
+                    }
+                }
+            )
 
-//     div.innerHTML = legendInfo;
-
-//     limits.forEach(function(limit, index) {
-//       labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-//     });
-
-//     div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-//     return div;
-//   };
-
-//   // Adding legend to the map
-//   legend.addTo(map);
-  
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Grab data with d3
-// d3.json(statesData, function(data) {
-
-//   // Create a new choropleth layer
-//   geojson = L.choropleth(data, {
-
-//     // Define what  property in the features to use
-//     valueProperty: "MHI2016",
-
-//     // Set color scale
-//     scale: ["#ffffb2", "#b10026"],
-
-//     // Number of breaks in step range
-//     steps: 10,
-
-//     // q for quartile, e for equidistant, k for k-means
-//     mode: "q",
-//     style: {
-//       // Border color
-//       color: "#fff",
-//       weight: 1,
-//       fillOpacity: 0.8
-//     },
-
-//     // Binding a pop-up to each layer
-//     onEachFeature: function(feature, layer) {
-//       layer.bindPopup("Zip Code: " + feature.properties.ZIP + "<br>Median Household Income:<br>" +
-//         "$" + feature.properties.MHI2016);
-//     }
-// }).addTo(map);
-
-//     var legend = L.control({ position: "bottomright" });
-//   legend.onAdd = function() {
-//     var div = L.DomUtil.create("div", "info legend");
-//     var limits = geojson.options.limits;
-//     var colors = geojson.options.colors;
-//     var labels = [];
-
-//     // Add min & max
-//     var legendInfo = "<h1>Median Income</h1>" +
-//       "<div class=\"labels\">" +
-//         "<div class=\"min\">" + limits[0] + "</div>" +
-//         "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-//       "</div>";
-
-//     div.innerHTML = legendInfo;
-
-//     limits.forEach(function(limit, index) {
-//       labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-//     });
-
-//     div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-//     return div;
-//   };
-
-//   // Adding legend to the map
-//   legend.addTo(map);
-
-// });
+        }
+    }
+)

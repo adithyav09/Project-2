@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./test.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha256-tHoAPGoNdhIR28YHl9DWLzeRfdwigkH7OCBXMrHXhoM=" crossorigin="anonymous"></script>
     <title>Choropleth Map</title>
@@ -12,10 +12,11 @@
     <h2 id='title'>United States Today's Gas Prices</h2>
     <div id='description'>The map shows the average gas prices per state for each of the following fuel types. Source: <a href='https://collectapi.com/api/gasPrice/gas-prices-api'>CollectAPI.com</a></div>
 
+    <div id='tooltip'></div>
     <svg id='canvas'>
         
     </svg>
 </body>
-<script defer src='static/js/test.js'></script>
+<script defer src='static/js/logic.js'></script>
 <script defer src='https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js'></script>
 </html>
