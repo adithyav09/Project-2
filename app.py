@@ -101,12 +101,14 @@ def Update():
     print(data)
     # print(data.decode("utf-8"))
 
-    # data=response
-    # collection.insert_many(data)
     # collection.insert_one(data)
     collection.update({},data,upsert=True)
  
     return redirect("/",code=302)
+
+@app.route("/Charts")
+def addnew():
+    return render_template('chord.html')
 
 
     
