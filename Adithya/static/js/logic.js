@@ -24,6 +24,7 @@ let drawMap = () => {
             })
             let gasPriceAverage = (parseFloat(state['gasoline']) + parseFloat(state['midGrade']) + parseFloat(state['premium']) + parseFloat(state['diesel'])) / 4
             console.log(gasPriceAverage)
+            
             let regular = parseFloat(state['gasoline'])
             if (gasPriceAverage >= 3.260 || gasPriceAverage <= 2.374) {
                 return 'tomato'
