@@ -4,8 +4,8 @@ zipcode = "31405"
 zipurl = f"https://www.zipcodeapi.com/rest/{zipapi}/info.json/{zipcode}/degrees"
 
 response = requests.get(zipurl).json()
-for k in response:
-    response[k] = str(response[k])
+# for k in response:
+#     response[k] = str(response[k])
 
 print(response)
 # response
@@ -53,6 +53,7 @@ import http.client
 from flask import Flask, render_template,redirect
 #import scrape_mars
 import pymongo
+import json
 # import scrape_mars
 
 
@@ -94,11 +95,14 @@ def Update():
     collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
     conn.request("GET",collecturl,headers=headers)
     res = conn.getresponse()
-    data = res.read()
-
-    print(data.decode("utf-8"))
+    data = res.read().decode("utf-8")
+    data = json.loads(data)
+    data = data['result']
+    print(data)
+    # print(data.decode("utf-8"))
 
     # data=response
+    # collection.insert_many(data)
     # collection.insert_one(data)
     collection.update({},data,upsert=True)
  
