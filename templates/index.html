@@ -47,18 +47,10 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">Filter Search</div>
                   <div class="panel-body">
-                    <form>
-                      <div class="form-group">
-                        <ul class="list-group" id="filters">
-                          <li class="filter list-group-item">
-                            <label for="ZipCode">Enter a Date</label>
-                            <input class="form-control"  id="Zip" type="text" onchange="ZipFunction(this)"placeholder="98109"  />
-                            <label for="Year">For Comparison Enter a Year</label>
-                            <input class="form-control"  id="Year" type="text" placeholder="2010" onclick="YearFunction(this)" />
-                          </li>
-                        </ul>
-                      </div>
-                    </form>
+                    <form method="POST">
+                      <input type="text" name="zipcode"></input>
+                      <input type="submit" value="Submit"></input>
+                  </form>
                 </div>
               </div>
             </aside>
@@ -76,10 +68,10 @@
                             </tr>
                           </thead>
                           <tbody>
-                              <td>{{ Gasoline_data.gasoline }}</td>
-                              <td>{{ Gasoline_data.midGrade }}</td>
-                              <td>{{ Gasoline_data.premium }}</td>
-                              <td>{{ Gasoline_data.diesel }}</td>
+                              <td>{{ Gasoline_data['gasoline'] }}</td>
+                              <td>{{ Gasoline_data['midGrade'] }}</td>
+                              <td>{{ Gasoline_data['premium'] }}</td>
+                              <td>{{ Gasoline_data['diesel'] }}</td>
                           </tbody>
                         </table>
                 <!-- <h4>Gasoline Prices:{{ Gasoline_data.gasoline }}</h4>
@@ -98,7 +90,7 @@
 </div>
 
     <script type ="text/javascript " src="../static/js/app.js"></script>
-    <script type ="text/javascript " src="../New/chord.js"></script>
+    <!-- <script type ="text/javascript " src="../New/chord.js"></script> -->
    
     
     
