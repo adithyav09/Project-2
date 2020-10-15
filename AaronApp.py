@@ -6,6 +6,7 @@ import json
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
+from statefips import States_fipsId
 
 
 
@@ -82,7 +83,8 @@ def index():
 
 
 @app.route("/Charts")
-def addnew():
+def choropleth():
+    
     return render_template('charts.html')
 
 @app.route("/News")
