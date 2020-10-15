@@ -3,12 +3,16 @@ import http.client
 from flask import Flask, render_template,redirect,request
 import sqlite3
 import json
+from sqlalchemy import create_engine
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
 
 
-def get_db_connection():
-    conn = sqlite3.connect('gasdatabase.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+
+# def get_db_connection():
+#     conn = sqlite3.connect('gasdatabase.db')
+#     conn.row_factory = sqlite3.Row
+#     return conn
 
 ###Testing database  SQL queries in terminal
 # conn = get_db_connection()
@@ -84,6 +88,18 @@ def addnew():
 @app.route("/News")
 def addNews():
     return render_template('News.html')
+
+
+@app.route("/Years")
+def Years():
+    Base = automap_base()
+    engine = create_engine('sqlite:///gasdatabase.db')
+    Base.prepare(engine, reflect = True)
+    HistGasPrices = Base.classes.hist_gas_prices
+    session = Session(engine)
+    histgasprices = session.query(HistGasPrices)
+    
+    return render_template('Years.html', histgasprices=histgasprices)
 
 # @app.route("/Years")
 # def Years():
