@@ -6,6 +6,7 @@
 <!-- Include fusion theme -->
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
 <!-- <script type="text/javascript">
     //STEP 2 - Chart Data
 	const dataSource = {
@@ -240,7 +241,7 @@ FusionCharts.ready(function() {
           "color": "#ffffff",
           "value": "340496",
           "category": [{
-              "label": "PADD1",
+              "label": "East Coast",
               "color": "#f8bd19",
               "value": "2030",
               "tooltext": "PADD1, $$valueK, $percentValue",
@@ -252,7 +253,7 @@ FusionCharts.ready(function() {
               },
             ]
           }, {
-              "label": "PADD2",
+              "label": "Midwest",
               "color": "#33ccff",
               "value": "53172",
               "tooltext": "PADD2, $$valueK, $percentValue",
@@ -276,7 +277,7 @@ FusionCharts.ready(function() {
              
             ]
           }, {
-              "label": "PADD3",
+              "label": "Gulf Coast",
               "color": "#2ca02c",
               "value": "233556",
               "tooltext": "PADD3, $$valueKBarrels, $percentValue",
@@ -316,7 +317,7 @@ FusionCharts.ready(function() {
 
             ]
           }, {
-              "label": "PADD4",
+              "label": "Rocky Mountain",
               "color": "#2e7b71",
               "value": "25558",
               "category": [
@@ -342,7 +343,7 @@ FusionCharts.ready(function() {
             ]
           },
           {
-              "label": "PADD5",
+              "label": "West Coast,AK,HI",
               "color": "#d62728",
               "value": "26181",
               "category": [{
