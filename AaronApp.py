@@ -38,7 +38,7 @@ app = Flask(__name__)
 def index():
     if request.method == "GET":
         zipcode = "31402"
-        zipapi = "ZVp42kUmPdgG4Na8hYyYEPlhx6cwKcmVZcrDu69nRtPLxcRO92qZFTrkipqJD8dy"
+        zipapi = "5kF2PxrgxTE9vrkZuSAchlb4SVaKrJgW5ewTfqiucVyZfcyaqLfN9JmRt98YNuol"
         zipurl = f"https://www.zipcodeapi.com/rest/{zipapi}/info.json/{zipcode}/degrees"
         response = requests.get(zipurl).json()
         
@@ -46,7 +46,7 @@ def index():
         
         headers = {
         'content-type': "application/json",
-        'authorization': "apikey 2NAsuESfcMYcaZ1u3iKmSA:31uTFgKBBkDBiQ0uHgGpID"
+        'authorization': "apikey 4uoz2sK22q8mhecgYl47qP:3l7LwdcPju8DkWJ1JY903g"
         }
 
         collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
@@ -54,6 +54,7 @@ def index():
         res = conn.getresponse()
         data = res.read()
         Gdata = json.loads(data)
+        print(Gdata)
         Gdata = Gdata['result']
         return render_template("index.html", Gasoline_data=Gdata) 
     else:
@@ -66,7 +67,7 @@ def index():
         
         headers = {
         'content-type': "application/json",
-        'authorization': "apikey 2NAsuESfcMYcaZ1u3iKmSA:31uTFgKBBkDBiQ0uHgGpID"
+        'authorization': "apikey 4uoz2sK22q8mhecgYl47qP:3l7LwdcPju8DkWJ1JY903g"
         }
 
         collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
@@ -74,7 +75,9 @@ def index():
         res = conn.getresponse()
         data = res.read()
         Gdata = json.loads(data)
+        print(Gdata)
         Gdata = Gdata['result']
+        
         return render_template("index.html", Gasoline_data=Gdata)
 
 
