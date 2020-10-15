@@ -90,9 +90,9 @@ function UpdateData(value){
     shapes:[{
     type: 'path',
         path: path,
-    fillcolor: '850000',
+    fillcolor: '080808',
     line: {
-        color: '850000'
+        color: '080808'
     }
     }],
     title: `<b> ${value}</b> <br>Current Prices in U.S`,
