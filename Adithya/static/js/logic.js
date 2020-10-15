@@ -37,9 +37,6 @@ let drawMap = () => {
             } else if (gasPriceAverage >= 1.993 || gasPriceAverage <= 1.857) {
                 return 'purple'
             }
-            // 2.205 to 2.104
-            // 2.103 to 1.994
-            // 1.993 to 1.857
 
         })
         .attr('data-fips', (statesDataItem) => {
