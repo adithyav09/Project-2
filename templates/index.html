@@ -12,6 +12,12 @@
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
         <!-- Step 2 - Include the fusion theme -->
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="/static/scripts/plotly/dependencies/d3.v3.min.js"></script> -->
+<!-- <script src="plotly-latest.min.js"></script> -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-- <script type="text/javascript" src="/static/scripts/plotly/dependencies/d3.v3.min.js"></script>
+<script type="text/javascript" src="/static/scripts/plotly/plotly.min.js"></script> --> -->
 <!-- <link rel ="stylesheet" href ="style.css"> -->
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
         
@@ -58,26 +64,22 @@
             <div class="col-md-6">
                 <!-- <div class="Gas"> -->
                     <div id="table-area" class="">
-                        <table id="ufo-table" class="table table-striped">
+                        <table class="table table-striped">
                           <thead>
                             <tr>
-                              <th class="table-head">Gasoline</th>
+                              <th  class="table-head">Gasoline</th>
                               <th class="table-head">Midgrade</th>
                               <th class="table-head">Premium</th>
-                              <th class="table-head">Diesel</th>
+                              <th  class="table-head">Diesel</th>
                             </tr>
                           </thead>
                           <tbody>
-                              <td>{{ Gasoline_data['gasoline'] }}</td>
-                              <td>{{ Gasoline_data['midGrade'] }}</td>
-                              <td>{{ Gasoline_data['premium'] }}</td>
-                              <td>{{ Gasoline_data['diesel'] }}</td>
+                              <td id="Gasoline">{{ Gasoline_data['gasoline'] }}</td>
+                              <td id ="Midgrade">{{ Gasoline_data['midGrade'] }}</td>
+                              <td  id="Premium" >{{ Gasoline_data['premium'] }}</td>
+                              <td id ="Diesel">{{ Gasoline_data['diesel'] }}</td>
                           </tbody>
                         </table>
-                <!-- <h4>Gasoline Prices:{{ Gasoline_data.gasoline }}</h4>
-                <h4>Midgrade Prices:{{ Gasoline_data.midGrade }}</h4>
-                <h4>Premium Prices:{{ Gasoline_data.premium }}</h4>
-                <h4>Diesel Prices:{{ Gasoline_data.diesel }}</h4> -->
             </div>
         </div>
             <div class="col-md-3 ">
@@ -85,17 +87,33 @@
                     <iframe src="https://giphy.com/embed/l4Ki9kSidioZfrENa" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/art-design-illustration-l4Ki9kSidioZfrENa"></a></p>
                 </div>
             </div>
-    </div>    
+    </div>  
+    <div class="row">
+        <div class ="col-md-2">
+            <h5>Select Option:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)">
+          </select>
+        </div>
+        <div class="col-md-10">
+            <div id="Gauge">
+            </div>
+        </div>
+             
+    </div>
+
         
 </div>
 
     <script type ="text/javascript " src="../static/js/app.js"></script>
+    <script type="text/javascript" src="../static/js/Gauge.js"></script>
     <!-- <script type ="text/javascript " src="../New/chord.js"></script> -->
    
     
     
     <!-- <script language='javascript' src='/opt/FONapache2/htdocs/inform/application/FusionCharts_Enterprise/JSClass/FusionCharts.js'></script> -->
-    
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
    
 </body>
 </html>
