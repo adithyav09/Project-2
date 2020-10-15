@@ -2,14 +2,15 @@ DROP TABLE IF EXISTS hist_gas_prices;
 
 CREATE TABLE hist_gas_prices(
 	Date DATE NOT NULL,
-	New_England FLOAT,
-	Central_Atlantic FLOAT,
-	Lower_Atlantic FLOAT,
-	Midwest FLOAT,
-	Gulf_Coast FLOAT,
-	Rocky_Mountain FLOAT,
-	West_Coast FLOAT,
-	West_Coast_No_Cali FLOAT
+	New_England_Prices FLOAT,
+	Central_Atlantic_Prices FLOAT,
+	Lower_Atlantic_Prices FLOAT,
+	Midwest_Prices FLOAT,
+	Gulf_Coast_Prices FLOAT,
+	Rocky_Mountain_Prices FLOAT,
+	West_Coast_Prices FLOAT,
+	West_Coast_No_Cali_Prices FLOAT,
+	PRIMARY KEY(Date)
 );
 
 
