@@ -26,11 +26,8 @@ from statefips import States_fipsId
 #     conn = get_db_connection()
 #     chosenregion = conn.execute('SELECT (Date,' + regioninput + '') FROM hist_gas_prices WHERE ')
 
-
-
 # create instance of Flask app
 app = Flask(__name__)
-
 
 # create route that renders index.html template
 @app.route("/", methods=["GET","POST"])
@@ -82,6 +79,7 @@ def index():
 
 @app.route("/Charts")
 def choropleth():
+    
     return render_template('charts.html')
 
 @app.route("/News")
@@ -107,7 +105,6 @@ def Years():
 #     conn.close()
 #     yearinput = request.form['text']
 #     return render_template('Years.html')
-
 
 if __name__ == "__main__":
     app.run(debug=True)
