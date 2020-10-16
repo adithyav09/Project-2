@@ -55,6 +55,7 @@ def index():
         Gdata = json.loads(data)
         print(Gdata)
         Gdata = Gdata['result']
+
         return render_template("index.html", Gasoline_data=Gdata) 
     else:
         zipcode = request.form['zipcode']
@@ -78,7 +79,6 @@ def index():
         Gdata = Gdata['result']
         
         return render_template("index.html", Gasoline_data=Gdata)
-
 
 @app.route("/Charts")
 def choropleth():

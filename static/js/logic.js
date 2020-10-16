@@ -18,11 +18,11 @@ let drawMap = () => {
         .attr('fill', (statesDataItem) => {
             let id = statesDataItem['id']
             let state = gasPriceData.find((item) => {
-                return item['id'] === id         
+                return item['id'] === id
             })
             let gasPriceAverage = (parseFloat(state['gasoline']) + parseFloat(state['midGrade']) + parseFloat(state['premium']) + parseFloat(state['diesel'])) / 4
             console.log(gasPriceAverage)
-            
+
             let regular = parseFloat(state['gasoline'])
             if (gasPriceAverage >= 3.260 || gasPriceAverage <= 2.374) {
                 return 'tomato'
@@ -43,7 +43,7 @@ let drawMap = () => {
         .attr('data-gasPrices', (statesDataItem) => {
             let id = statesDataItem['id']
             let state = gasPriceData.find((item) => {
-                return item['id'] === id         
+                return item['id'] === id
             })
         })
         .on('mouseover', (statesDataItem) => {
@@ -52,12 +52,12 @@ let drawMap = () => {
 
             let id = statesDataItem['id']
             let state = gasPriceData.find((item) => {
-                return item['id'] === id         
+                return item['id'] === id
             })
-            tooltip.text("Gasoline Price: $" + state['gasoline'] + 
-                        " Mid-Grade Price: $" + state['midGrade'] + 
-                        " Premium Price: $" + state['premium'] + 
-                        " Diesel Price: $"+ state['diesel'])
+            tooltip.text("Gasoline Price: $" + state['gasoline'] +
+                " Mid-Grade Price: $" + state['midGrade'] +
+                " Premium Price: $" + state['premium'] +
+                " Diesel Price: $" + state['diesel'])
         })
         .on('mouseout', (statesDataItem) => {
             tooltip.transition()
@@ -67,20 +67,20 @@ let drawMap = () => {
 
 d3.json(statesFile).then(
     (data, error) => {
-        if(error){
+        if (error) {
             console.log(error)
-        }else{
+        } else {
             // statesData = data
             statesData = topojson.feature(data, data.objects.states).features
             console.log(statesData)
-            
+
 
             d3.json(gasPriceStateFile).then(
                 (data, error) => {
-                    if(error){
+                    if (error) {
                         console.log(error)
                     }
-                    else{
+                    else {
                         gasPriceData = data
                         console.log('Gas Price Data')
                         console.log(gasPriceData)
