@@ -131,6 +131,10 @@ svg.main-svg {
   padding: 10px;
   border-radius: 5px;
 }
-
+#description a{
+  text-decoration: none;
+  color: #FDF1E7;
+  text-align: center;
+}
 
 
