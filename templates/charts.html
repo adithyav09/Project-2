@@ -1,11 +1,17 @@
 <html>
 <head>
 <title>My first chart using FusionCharts Suite XT</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+	
 <!-- Include fusioncharts core library -->
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
 <!-- Include fusion theme -->
 <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha256-tHoAPGoNdhIR28YHl9DWLzeRfdwigkH7OCBXMrHXhoM=" crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
 <!-- <script type="text/javascript">
     //STEP 2 - Chart Data
@@ -192,6 +198,26 @@ FusionCharts.ready(function() {
 
 </head>
 <body>
+  <div class="container-fluid">
+    <div class="row" style=color:yellowgreen >
+        <div class="col-md-12 jumbotron text-center" >
+            <div class ="box">
+                <marquee  behavior="scroll" direction="left">A place where you can find cheapest,nearest and your favorite Gas stations  in your viccinity!!</marquee>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="topnav">
+                <a class="active" href="#home">Home</a>
+                <a href="#news">News</a>
+                <a href="Charts">Charts</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </div>
+
   <div class="row">
   <div class =col-md-12>
 <div id="chart-container">FusionCharts XT will load here!</div>
@@ -199,14 +225,45 @@ FusionCharts.ready(function() {
 </div>
 
 <div class="row">
-  <div class ="col-md-6">
+  <div class ="col-md-12">
     <div class ="box">
       <div id ="Vehicle">
 
       </div>
  </div>
 </div>
-<div class="col-md-6">
+</div>
+<div class="row">
+<div class="col-md-12">
+  <h2 id='title'>United States Today's Gas Prices</h2>
+  <div id='description'>The map shows the average gas prices per state for each of the following fuel types. Source: <a href='https://collectapi.com/api/gasPrice/gas-prices-api'>CollectAPI.com</a></div>
+
+  <div id='tooltip'></div>
+  <svg id='canvas'>
+      
+  </svg>
+  <svg id='legend'>
+      <g>
+          <rect x="10" y="0" width="40" height="40" fill="tomato"></rect>
+          <text x="60" y="20" fill="black">$3.260 to $2.374</text>
+      </g>
+      <g>
+          <rect x="10" y="40" width="40" height="40" fill="orange"></rect>
+          <text x="60" y="60" fill="black">$2.373 to $2.206</text>
+      </g>
+      <g>
+          <rect x="10" y="80" width="40" height="40" fill="lightgreen"></rect>
+          <text x="60" y="100" fill="black">Range</text>
+      </g>
+      <g>
+          <rect x="10" y="120" width="40" height="40" fill="limegreen"></rect>
+          <text x="60" y="140" fill="black">Range</text>
+      </g>
+  </svg>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
  <div id ="Pie">
   <script type="text/javascript">
   FusionCharts.ready(function(){
@@ -223,8 +280,11 @@ FusionCharts.ready(function() {
           "subcaption": "JUL-2020",
           "showPlotBorder": "1",
           "piefillalpha": "60",
-          "basefontsize": "15",
-          "baseFont":"outCnvBaseFont" ,
+          // "basefontsize": "15",
+          "baseFontSize": "15",
+          "baseFontColor":"#000000",
+          "baseFontWeight": "100",
+          "baseFont":"outCnvBaseFont",
           // "Helvetica Neue,Arial",
           "pieborderthickness": "3",
           "hoverfillcolor": "#CCCCCC",
@@ -343,7 +403,7 @@ FusionCharts.ready(function() {
             ]
           },
           {
-              "label": "West Coast,AK,HI",
+              "label": "West Coast,{br}AK,HI",
               "color": "#d62728",
               "value": "26181",
               "category": [{
@@ -384,6 +444,10 @@ FusionCharts.ready(function() {
  </div>
 </div>
 </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type=text/javascript src="../static/js/logic.js"></script>
 <script type=text/javascript src="../static/js/chord.js"></script>
 <script type=text/javascript src="../static/js/Vehicles.js"></script>
 </body>
