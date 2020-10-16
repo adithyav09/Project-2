@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from statefips import States_fipsId
+import choropleth
 
 # def get_db_connection():
 #     conn = sqlite3.connect('gasdatabase.db')
@@ -79,8 +80,16 @@ def index():
 
 @app.route("/Charts")
 def choropleth():
+<<<<<<< HEAD
     
+=======
+<<<<<<< HEAD
+    
+    return render_template('charts.html',)
+=======
+>>>>>>> 0e24a511e10f1365cd24f8258bc15efe2c3c2a52
     return render_template('charts.html')
+>>>>>>> 94146e0f3597178f2593b968e4030f8e2007d1ed
 
 @app.route("/News")
 def addNews():

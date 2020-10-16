@@ -33,8 +33,8 @@ for gasDict, state_id in zip(gasPriceState_data, States_fipsId.values()):
     gasDict['id'] = state_id
     print(gasDict)
 
-with open('static/data/gasPriceState.json', 'w') as fp:
-    json.dump(gasPriceState_data, fp)
+# with open('static/data/gasPriceState.json', 'w') as fp:
+#     json.dump(gasPriceState_data, fp)
 
 
 
