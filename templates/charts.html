@@ -1,0 +1,454 @@
+<html>
+<head>
+<title>My first chart using FusionCharts Suite XT</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+	
+<!-- Include fusioncharts core library -->
+<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+<!-- Include fusion theme -->
+<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha256-tHoAPGoNdhIR28YHl9DWLzeRfdwigkH7OCBXMrHXhoM=" crossorigin="anonymous"></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+<!-- <script type="text/javascript">
+    //STEP 2 - Chart Data
+	const dataSource = {
+  chart: {
+    caption: "U.S. Export/Imports of Crude Oil and Petroleum Products (Thousand Barrels) ",
+    subcaption: "in Jul 2020 ",
+    nodelabelposition: "outside",
+    showlegend: 0,
+    theme: "fusion",
+    mode: "post",
+    linkcolorbydominance: "1",
+    animation: "0"
+  },
+  nodes: [
+  {
+      label: "India"
+    },
+    {
+      label: "USA"
+    },
+    {
+      label: "CHINA"
+    },
+    {
+      label: "UAE"
+    },
+    {
+      label: "JAPAN"
+    },
+    {
+      label: "SOUTH KOREA"
+    },
+    {
+      label: "CANADA"
+    },
+    {
+      label: "UK"
+    },
+    {
+      label: "SAUDI ARABIA"
+	},
+	{
+		label: "COLOMBIA"
+	},
+	{
+		label: "RUSSIA"
+	},
+	{
+		label: "MEXICO"
+	},
+
+  ],
+  links: [
+  {
+      from: "INDIA",
+      to: "USA",
+      value: 3486
+    },
+    {
+      from: "USA",
+      to: "INDIA",
+      value: 10710
+    },
+    {
+      from: "USA",
+      to: "CHINA",
+      value: 26395
+    },
+    {
+      from: "CHINA",
+      to: "USA",
+      value: 4
+    },
+    {
+      from: "USA",
+      to: "UAE",
+      value: 771
+    },
+    {
+      from: "UAE",
+      to: "USA",
+      value: 907
+    },
+    {
+      from: "CANADA",
+      to: "USA",
+      value: 123425
+    },
+    {
+      from: "USA",
+      to: "CANADA",
+      value: 27720
+    },
+    {
+      from: "USA",
+      to: "UK",
+      value: 12142
+    },
+    {
+      from: "UK",
+      to: "USA",
+      value: 2598
+    },
+    {
+      from: "USA",
+      to: "SAUDI ARABIA",
+      value: 16
+    },
+    {
+      from: "SAUDI ARABIA",
+      to: "USA",
+      value: 22271
+    },
+    {
+      from: "USA",
+      to: "JAPAN",
+      value: 20556
+    },
+    {
+      from: "JAPAN",
+      to: "USA",
+      value: 673
+    },
+    {
+      from: "USA",
+      to: "SOUTH KOREA",
+      value: 12686
+    },
+    {
+      from: "SOUTH KOREA",
+      to: "USA",
+      value: 3427
+	},
+	{
+      from: "COLOMBIA",
+      to: "USA",
+      value: 10275
+	},
+	{
+      from: "USA",
+      to: "COLOMBIA",
+      value: 1634
+	},
+	{
+      from: "RUSSIA",
+      to: "USA",
+      value: 17460
+	},
+	{
+      from: "USA",
+      to: "RUSSIA",
+      value: 4
+	},
+	{
+      from: "USA",
+      to: "MEXICO",
+      value: 30220
+	},
+	{
+      from: "MEXICO",
+      to: "USA",
+      value: 23417
+	},
+	
+	
+
+  ]
+};
+
+FusionCharts.ready(function() {
+  var myChart = new FusionCharts({
+    type: "chord",
+    renderAt: "chart-container",
+    width: "100%",
+    height: "100%",
+    dataFormat: "json",
+    dataSource
+  }).render();
+});
+
+
+</script> -->
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row" style=color:yellowgreen >
+        <div class="col-md-12 jumbotron text-center" >
+            <div class ="box">
+                <marquee  behavior="scroll" direction="left">A place where you can find cheapest,nearest and your favorite Gas stations  in your viccinity!!</marquee>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="topnav">
+                <a class="active" href="#home">Home</a>
+                <a href="#news">News</a>
+                <a href="Charts">Charts</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </div>
+
+  <div class="row">
+  <div class =col-md-12>
+<div id="chart-container">FusionCharts XT will load here!</div>
+</div>
+</div>
+
+<div class="row">
+  <div class ="col-md-12">
+    <div class ="box">
+      <div id ="Vehicle">
+
+      </div>
+ </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+  <h2 id='title'>United States Today's Gas Prices</h2>
+  <div id='description'>The map shows the average gas prices per state for each of the following fuel types. Source: <a href='https://collectapi.com/api/gasPrice/gas-prices-api'>CollectAPI.com</a></div>
+
+  <div id='tooltip'></div>
+  <svg id='canvas'>
+      
+  </svg>
+  <svg id='legend'>
+      <g>
+          <rect x="10" y="0" width="40" height="40" fill="tomato"></rect>
+          <text x="60" y="20" fill="black">$3.260 to $2.374</text>
+      </g>
+      <g>
+          <rect x="10" y="40" width="40" height="40" fill="orange"></rect>
+          <text x="60" y="60" fill="black">$2.373 to $2.206</text>
+      </g>
+      <g>
+          <rect x="10" y="80" width="40" height="40" fill="lightgreen"></rect>
+          <text x="60" y="100" fill="black">Range</text>
+      </g>
+      <g>
+          <rect x="10" y="120" width="40" height="40" fill="limegreen"></rect>
+          <text x="60" y="140" fill="black">Range</text>
+      </g>
+  </svg>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+ <div id ="Pie">
+  <script type="text/javascript">
+  FusionCharts.ready(function(){
+    var chartObj = new FusionCharts({
+  type: 'multilevelpie',
+  renderAt: 'Pie',
+
+  width: '900',
+  height: '600',
+  dataFormat: 'json',
+  dataSource: {
+      "chart": {
+          "caption": "Crude Oil Production Breakup | Thousand Barrels",
+          "subcaption": "JUL-2020",
+          "showPlotBorder": "1",
+          "piefillalpha": "60",
+          // "basefontsize": "15",
+          "baseFontSize": "15",
+          "baseFontColor":"#000000",
+          "baseFontWeight": "100",
+          "baseFont":"outCnvBaseFont",
+          // "Helvetica Neue,Arial",
+          "pieborderthickness": "3",
+          "hoverfillcolor": "#CCCCCC",
+          "piebordercolor": "#FFFFFF",
+          "hoverfillcolor": "#CCCCCC",
+          "numberprefix": "$",
+          "plottooltext": "$label, $$valueK, $percentValue",
+          //Theme
+          "theme": "fusion",
+          "innerRadius": "30"
+      },
+      "category": [{
+          "label": "US{br}Crude{br}Oil{br}Production",
+          "color": "#ffffff",
+          "value": "340496",
+          "category": [{
+              "label": "East Coast",
+              "color": "#f8bd19",
+              "value": "2030",
+              "tooltext": "PADD1, $$valueK, $percentValue",
+              "category": [
+              {
+                  "label": "VA,PA,NY,FL",
+                  "color": "#f8bd19",
+                  "value": "1508"
+              },
+            ]
+          }, {
+              "label": "Midwest",
+              "color": "#33ccff",
+              "value": "53172",
+              "tooltext": "PADD2, $$valueK, $percentValue",
+              "category": [
+              
+              {
+                  "label": "North Dakota",
+                  "color": "#33ccff",
+                  "value": "31900"
+              },
+              {
+                  "label": "KS,OH,SD,TE,IL,IA",
+                  "color": "#33ccff",
+                  "value": "6456"
+              },
+              {
+                  "label": "OK",
+                  "color": "#33ccff",
+                  "value": "14936"
+              },
+             
+            ]
+          }, {
+              "label": "Gulf Coast",
+              "color": "#2ca02c",
+              "value": "233556",
+              "tooltext": "PADD3, $$valueKBarrels, $percentValue",
+              "category": [
+              
+              {
+                  "label": "Louisiana",
+                  "color": "#2ca02c",
+                  "value": "3139"
+              },
+              {
+                  "label": "New Mexico",
+                  "color": "#2ca02c",
+                  "value": "30613"
+              },
+              {
+                  "label": "AR,AL",
+                  "color": "#2ca02c",
+                  "value": "664"
+              }, 
+              {
+                  "label": "Texas",
+                  "color": "#2ca02c",
+                  "value": "146773"
+              },
+              
+              {
+                  "label": "Mississippi",
+                  "color": "#2ca02c",
+                  "value": "1258"
+              },
+              {
+                  "label": "Federal{br}Offshore{br}(PADD3)",
+                  "color": "#2ca02c",
+                  "value": "51108"
+              },
+
+            ]
+          }, {
+              "label": "Rocky Mountain",
+              "color": "#2e7b71",
+              "value": "25558",
+              "category": [
+              {
+                  "label": "Montana",
+                  "color": "#2e7b71",
+                  "value": "1648"
+              },{
+                  "label": "Colorado",
+                  "color": "#2e7b71",
+                  "value": "13955"},
+              {
+                  "label": "Utah",
+                  "color": "#2e7b71",
+                  "value": "2607"
+              },
+              {
+                  "label": "Wyoming",
+                  "color": "#2e7b71",
+                  "value": "7348"
+              },
+              
+            ]
+          },
+          {
+              "label": "West Coast,{br}AK,HI",
+              "color": "#d62728",
+              "value": "26181",
+              "category": [{
+                  "label": "Alaska",
+                  "color": "#d62728",
+                  "value": "13767"
+              }, {
+                  "label": "Arizona",
+                  "color": "#d62728",
+                  "value": "1"
+              }, {
+                  "label": "California",
+                  "color": "#d62728",
+                  "value": "12014"
+              },
+              // {
+              //     "label": "Nevada",
+              //     "color": "#FF9900",
+              //     "value": "15"
+              // },
+              // {
+              //     "label": "Federal Offshore(PADD 5)",
+              //     "color": "#FF9900",
+              //     "value": "383",
+              //     "basefontsize":"25"
+              // },
+              
+            ]
+          }]
+      }]
+  }
+}
+);
+
+    chartObj.render();
+  });
+</script>
+ </div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type=text/javascript src="../static/js/logic.js"></script>
+<script type=text/javascript src="../static/js/chord.js"></script>
+<script type=text/javascript src="../static/js/Vehicles.js"></script>
+</body>
+</html>
