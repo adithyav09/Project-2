@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+// https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json
+
+=======
+>>>>>>> main
 let statesFile = 'https://d3js.org/us-10m.v1.json'
 let gasPriceStateFile = 'static/data/gasPriceState.json'
 

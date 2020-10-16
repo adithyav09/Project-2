@@ -9,7 +9,7 @@ conn = http.client.HTTPSConnection("api.collectapi.com")
 
 headers = {
     'content-type': "application/json",
-    'authorization': "apikey 095qy5emUONDSAcb8TZFvG:0lLiUg1Hj1hxHS9mCEob3m"
+    'authorization': "apikey 60NpjP2khNX0u5YCngWVa8:3q7xw9Ij4XoszUMayKd6lk"
     }
 
 conn.request("GET", "/gasPrice/allUsaPrice", headers=headers)

@@ -131,10 +131,19 @@ svg.main-svg {
   padding: 10px;
   border-radius: 5px;
 }
+<<<<<<< HEAD
 #description a{
   text-decoration: none;
   color: #FDF1E7;
   text-align: center;
 }
+=======
+
+#map {
+  width: 600px;
+  height: 400px
+}
+
+>>>>>>> 94146e0f3597178f2593b968e4030f8e2007d1ed
 
 
