@@ -8,6 +8,10 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from statefips import States_fipsId
 import choropleth
+import Scrape
+import requests
+import http.client
+import pymongo
 
 # def get_db_connection():
 #     conn = sqlite3.connect('gasdatabase.db')
@@ -81,18 +85,24 @@ def index():
         
         return render_template("index.html", Gasoline_data=Gdata)
 
-@app.route("/Charts")
-def choropleth():
-<<<<<<< HEAD
-    
-    return render_template('charts.html',)
-=======
-    return render_template('charts.html')
->>>>>>> 94146e0f3597178f2593b968e4030f8e2007d1ed
+# @app.route("/charts.html")
+# def choropleth():
+#     return render_template('charts.html')
+# Initialize PyMongo to work with MongoDBs
+conn = 'mongodb://localhost:27017'
+client = pymongo.MongoClient(conn)
 
-@app.route("/News")
+# Define database and collection
+db = client.Gas_Data
+collection = db.State_Data
+@app.route("/News.html")
 def addNews():
-    return render_template('News.html')
+    Data = Scrape.scrape_gas() 
+    # collection.insert_one(Data)
+    collection.update({},Data,upsert=True)
+    # Scrape_Data = Data.find_one()
+
+    return render_template('News.html',Gas_info=Data)
 
 @app.route("/Years")
 def Years():
