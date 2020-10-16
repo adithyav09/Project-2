@@ -13,188 +13,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha256-tHoAPGoNdhIR28YHl9DWLzeRfdwigkH7OCBXMrHXhoM=" crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
-<!-- <script type="text/javascript">
-    //STEP 2 - Chart Data
-	const dataSource = {
-  chart: {
-    caption: "U.S. Export/Imports of Crude Oil and Petroleum Products (Thousand Barrels) ",
-    subcaption: "in Jul 2020 ",
-    nodelabelposition: "outside",
-    showlegend: 0,
-    theme: "fusion",
-    mode: "post",
-    linkcolorbydominance: "1",
-    animation: "0"
-  },
-  nodes: [
-  {
-      label: "India"
-    },
-    {
-      label: "USA"
-    },
-    {
-      label: "CHINA"
-    },
-    {
-      label: "UAE"
-    },
-    {
-      label: "JAPAN"
-    },
-    {
-      label: "SOUTH KOREA"
-    },
-    {
-      label: "CANADA"
-    },
-    {
-      label: "UK"
-    },
-    {
-      label: "SAUDI ARABIA"
-	},
-	{
-		label: "COLOMBIA"
-	},
-	{
-		label: "RUSSIA"
-	},
-	{
-		label: "MEXICO"
-	},
 
-  ],
-  links: [
-  {
-      from: "INDIA",
-      to: "USA",
-      value: 3486
-    },
-    {
-      from: "USA",
-      to: "INDIA",
-      value: 10710
-    },
-    {
-      from: "USA",
-      to: "CHINA",
-      value: 26395
-    },
-    {
-      from: "CHINA",
-      to: "USA",
-      value: 4
-    },
-    {
-      from: "USA",
-      to: "UAE",
-      value: 771
-    },
-    {
-      from: "UAE",
-      to: "USA",
-      value: 907
-    },
-    {
-      from: "CANADA",
-      to: "USA",
-      value: 123425
-    },
-    {
-      from: "USA",
-      to: "CANADA",
-      value: 27720
-    },
-    {
-      from: "USA",
-      to: "UK",
-      value: 12142
-    },
-    {
-      from: "UK",
-      to: "USA",
-      value: 2598
-    },
-    {
-      from: "USA",
-      to: "SAUDI ARABIA",
-      value: 16
-    },
-    {
-      from: "SAUDI ARABIA",
-      to: "USA",
-      value: 22271
-    },
-    {
-      from: "USA",
-      to: "JAPAN",
-      value: 20556
-    },
-    {
-      from: "JAPAN",
-      to: "USA",
-      value: 673
-    },
-    {
-      from: "USA",
-      to: "SOUTH KOREA",
-      value: 12686
-    },
-    {
-      from: "SOUTH KOREA",
-      to: "USA",
-      value: 3427
-	},
-	{
-      from: "COLOMBIA",
-      to: "USA",
-      value: 10275
-	},
-	{
-      from: "USA",
-      to: "COLOMBIA",
-      value: 1634
-	},
-	{
-      from: "RUSSIA",
-      to: "USA",
-      value: 17460
-	},
-	{
-      from: "USA",
-      to: "RUSSIA",
-      value: 4
-	},
-	{
-      from: "USA",
-      to: "MEXICO",
-      value: 30220
-	},
-	{
-      from: "MEXICO",
-      to: "USA",
-      value: 23417
-	},
-	
-	
-
-  ]
-};
-
-FusionCharts.ready(function() {
-  var myChart = new FusionCharts({
-    type: "chord",
-    renderAt: "chart-container",
-    width: "100%",
-    height: "100%",
-    dataFormat: "json",
-    dataSource
-  }).render();
-});
-
-
-</script> -->
 
 </head>
 <body>
@@ -220,16 +39,42 @@ FusionCharts.ready(function() {
 
   <div class="row">
   <div class =col-md-12>
-<div id="chart-container">FusionCharts XT will load here!</div>
-</div>
-</div>
+  <div id="chart-container">FusionCharts XT will load here!</div>
+  <br>
+    <text style="font-family:courier;">Crude oil and unfinished oils are reported by the PAD District in which they are processed; all other products are reported by the PAD District of entry. Crude oil includes imports for storage in the Stategic Petroleum Reserve. 
+      <br>On December 18, 2015, the U.S. enacted legislation authorizing the export of U.S. crude oil without a license. Exports to embargoed or sanctioned countries continue to require authorization. Prior to December 2015, crude oil exports were restricted to: (1) crude oil derived from fields under the State waters of Cook Inlet of Alaska; (2) Alaskan North Slope crude oil; (3) certain domestically produced crude oil destined for Canada; (4) shipments to U.S. territories; and (5) California crude oil to Pacific Rim countries
+    </text>
+    <br><br>
+  </div>
+  </div>
 
-<div class="row">
-  <div class ="col-md-12">
-    <div class ="box">
-      <div id ="Vehicle">
-
+  <div class="row">
+    <div class ="col-md-12">
+      <div class ="box">
+        <div id ="Vehicle">
+      
       </div>
+      <br><br>
+      <b> Total number of registered automobiles in the U.S. by state 2018</b>
+        <br><br>               
+      <text style="font-family:courier">California had the most automobile registrations in 2018: More than 15 million such vehicles were registered in
+        <a href=" /statistics/183497/population-in-the-federal-states-of-the-us/" target="_blank">the most populous U.S. federal state</a>
+        " California also leads in terms of "
+        <a href="/statistics/634072/us-car-sales-by-key-state/" target="_blank">annual car sales </a>
+        with almost 887,000 sold in 2018. Additionally, California residents purchased about 568,400 crossover and sport-utility vehicles (CUVs and SUVs), some 313,600 pickups, and roughly 235,000 luxury and sports cars in 2018. 
+      </text>
+      <br><br>
+      <b> A walk in the light truck parc </b>
+      <br><br>
+       
+      <text style="font-family:courier">U.S. automobile and truck registrations reached about 264 million units in 2018. The number of 
+      <a href="/statistics/738687/projected-us-vehicles-in-operation/" target="_blank">vehicles in operation </a>
+      in the United States is projected to increase to around 289 million units in the third quarter of 2019. 
+      <a href="/statistics/199980/us-truck-sales-since-1951/" target="_blank">Light truck retail sales increased </a>
+      from 10.6 million units in 2017 to a staggering 12.2 million units in 2019. These figures underpin the assumption that light trucks remain in high demand while customers seem to have
+      <a href="/statistics/199974/us-car-sales-since-1951/" target="_blank"> lost interest in cars: Just 4.7 million cars were sold in the United States in 2019. 
+      </a>
+      </text>
  </div>
 </div>
 </div>
@@ -441,7 +286,11 @@ FusionCharts.ready(function() {
     chartObj.render();
   });
 </script>
- </div>
+</div>
+<br><br>
+<text style="font-family:courier">
+  Crude oil production quantities are estimated by state and summed to the PADD and the U.S. level. 
+</text> 
 </div>
 </div>
 </div>
