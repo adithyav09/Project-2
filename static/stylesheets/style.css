@@ -132,5 +132,10 @@ svg.main-svg {
   border-radius: 5px;
 }
 
+#map {
+  width: 600px;
+  height: 400px
+}
+
 
 

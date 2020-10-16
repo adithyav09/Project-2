@@ -8,9 +8,6 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from statefips import States_fipsId
 
-
-
-
 # def get_db_connection():
 #     conn = sqlite3.connect('gasdatabase.db')
 #     conn.row_factory = sqlite3.Row
@@ -48,7 +45,7 @@ def index():
         
         headers = {
         'content-type': "application/json",
-        'authorization': "apikey 4uoz2sK22q8mhecgYl47qP:3l7LwdcPju8DkWJ1JY903g"
+        'authorization': "apikey 60NpjP2khNX0u5YCngWVa8:3q7xw9Ij4XoszUMayKd6lk"
         }
 
         collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
@@ -70,7 +67,7 @@ def index():
         
         headers = {
         'content-type': "application/json",
-        'authorization': "apikey 4uoz2sK22q8mhecgYl47qP:3l7LwdcPju8DkWJ1JY903g"
+        'authorization': "apikey 60NpjP2khNX0u5YCngWVa8:3q7xw9Ij4XoszUMayKd6lk"
         }
 
         collecturl = f"/gasPrice/fromCoordinates?lng={response['lng']}&lat={response['lat']}"
