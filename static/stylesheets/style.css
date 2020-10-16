@@ -116,3 +116,21 @@ svg.main-svg {
   width: 400px;
   height : 280px;
 }
+
+#canvas{
+  background-color: #305555;
+  /*box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
+  /*border-radius: 5px; */
+  padding: 10px;
+  border-radius: 5px;
+}
+#legend{
+  background-color: #305555;
+  /*box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
+  /*border-radius: 5px; */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
