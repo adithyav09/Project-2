@@ -1,5 +1,5 @@
 let statesFile = 'https://d3js.org/us-10m.v1.json'
-let gasPriceStateFile = '../data/gasPriceState.json'
+let gasPriceStateFile = 'static/data/gasPriceState.json'
 
 let statesData
 let gasPriceData
@@ -35,7 +35,7 @@ let drawMap = () => {
             } else if (gasPriceAverage >= 1.993 || gasPriceAverage <= 1.857) {
                 return 'purple'
             }
-
+            
         })
         .attr('data-fips', (statesDataItem) => {
             return statesDataItem['id']

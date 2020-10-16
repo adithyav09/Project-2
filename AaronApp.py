@@ -31,11 +31,8 @@ import pymongo
 #     conn = get_db_connection()
 #     chosenregion = conn.execute('SELECT (Date,' + regioninput + '') FROM hist_gas_prices WHERE ')
 
-
-
 # create instance of Flask app
 app = Flask(__name__)
-
 
 # create route that renders index.html template
 @app.route("/", methods=["GET","POST"])
@@ -85,6 +82,7 @@ def index():
         
         return render_template("index.html", Gasoline_data=Gdata)
 
+<<<<<<< HEAD
 # @app.route("/charts.html")
 # def choropleth():
 #     return render_template('charts.html')
@@ -96,6 +94,22 @@ client = pymongo.MongoClient(conn)
 db = client.Gas_Data
 collection = db.State_Data
 @app.route("/News.html")
+=======
+@app.route("/Charts")
+def choropleth():
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
+    
+    return render_template('charts.html',)
+=======
+>>>>>>> 0e24a511e10f1365cd24f8258bc15efe2c3c2a52
+    return render_template('charts.html')
+>>>>>>> 94146e0f3597178f2593b968e4030f8e2007d1ed
+
+@app.route("/News")
+>>>>>>> 5582ea3f22d3b5b2f9b8a6f6232fed6db50b845f
 def addNews():
     Data = Scrape.scrape_gas() 
     # collection.insert_one(Data)
@@ -123,7 +137,6 @@ def Years():
 #     conn.close()
 #     yearinput = request.form['text']
 #     return render_template('Years.html')
-
 
 if __name__ == "__main__":
     app.run(debug=True)
