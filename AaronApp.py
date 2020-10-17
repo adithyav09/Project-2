@@ -82,7 +82,6 @@ def index():
         
         return render_template("index.html", Gasoline_data=Gdata)
 
-<<<<<<< HEAD
 # @app.route("/charts.html")
 # def choropleth():
 #     return render_template('charts.html')
@@ -93,28 +92,20 @@ client = pymongo.MongoClient(conn)
 # Define database and collection
 db = client.Gas_Data
 collection = db.State_Data
-@app.route("/News.html")
-=======
-@app.route("/Charts")
-def choropleth():
-<<<<<<< HEAD
-    
-=======
-<<<<<<< HEAD
-    
-    return render_template('charts.html',)
-=======
->>>>>>> 0e24a511e10f1365cd24f8258bc15efe2c3c2a52
-    return render_template('charts.html')
->>>>>>> 94146e0f3597178f2593b968e4030f8e2007d1ed
 
-@app.route("/News")
->>>>>>> 5582ea3f22d3b5b2f9b8a6f6232fed6db50b845f
+
+@app.route("/charts.html")
+def choropleth():
+    return render_template('charts.html')
+
+@app.route("/News.html")
+
 def addNews():
     Data = Scrape.scrape_gas() 
     # collection.insert_one(Data)
-    collection.update({},Data,upsert=True)
     # Scrape_Data = Data.find_one()
+    collection.replace_one({},Data,upsert=True)
+    
 
     return render_template('News.html',Gas_info=Data)
 
