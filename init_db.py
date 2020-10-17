@@ -18,7 +18,7 @@ df.to_sql('hist_gas_prices', conn, if_exists='append', index=False)
 
 conn.commit()
 
-class CleanHistGasPrices(Base):
+class HistGasPrices(Base):
     __tablename__ = 'hist_gas_prices'
     Date = Column(Integer, primary_key=True)
     Year = Column(Integer)
