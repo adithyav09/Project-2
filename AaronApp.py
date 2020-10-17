@@ -1,4 +1,3 @@
-import requests
 import http.client
 from flask import Flask, render_template,redirect,request
 import sqlite3
@@ -61,7 +60,7 @@ def index():
         
         return render_template("index.html", Gasoline_data=Gdata)
 
-<<<<<<< HEAD
+
 # @app.route("/charts.html")
 # def choropleth():
 #     return render_template('charts.html')
@@ -72,7 +71,6 @@ client = pymongo.MongoClient(conn)
 # Define database and collection
 db = client.Gas_Data
 collection = db.State_Data
-
 
 @app.route("/charts.html")
 def choropleth():
@@ -85,17 +83,15 @@ def addNews():
     # collection.insert_one(Data)
     # Scrape_Data = Data.find_one()
     collection.replace_one({},Data,upsert=True)
-    
-=======
 
-@app.route("/Charts")
-def addnew():
-    return render_template('charts.html')
+# @app.route("/Charts")
+# def addnew():
+#     return render_template('charts.html')
 
-@app.route("/News")
-def addNews():
-    return render_template('News.html')
->>>>>>> a7df96d3dad81f5230aec7528a9b980db7c76b80
+# @app.route("/News")
+# def addNews():
+#     return render_template('News.html')
+
 
 
 @app.route("/Years", methods=["GET","POST"])
@@ -143,7 +139,18 @@ def Years():
         return render_template('Years.html', HistoricalData=HistoricalData)
 
 
+@app.route("/test.html")
+def map():
+    return render_template('test.html')
 
+# @app.route("/Years")
+# def Years():
+#     conn = get_db_connection()
+#     currentprices = conn.execute('SELECT * FROM hist_gas_prices WHERE Date LIKE 2020*').fetchall()
+#     histprices = conn.execute('SELECT * FROM hist_gas_prices WHERE Date LIKE ' + yearinput + '*').fetchall()
+#     conn.close()
+#     yearinput = request.form['text']
+#     return render_template('Years.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
