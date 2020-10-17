@@ -1,5 +1,5 @@
 let statesFile = 'https://d3js.org/us-10m.v1.json'
-let gasPriceStateFile = '../data/gasPriceState.json'
+let gasPriceStateFile = 'static/data/gasPriceState.json'
 
 let statesData
 let gasPriceData
@@ -79,8 +79,7 @@ d3.json(statesFile).then(
                 (data, error) => {
                     if (error) {
                         console.log(error)
-                    }
-                    else {
+                    } else {
                         gasPriceData = data
                         console.log('Gas Price Data')
                         console.log(gasPriceData)

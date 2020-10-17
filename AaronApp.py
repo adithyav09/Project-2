@@ -93,13 +93,12 @@ client = pymongo.MongoClient(conn)
 # Define database and collection
 db = client.Gas_Data
 collection = db.State_Data
-@app.route("/News.html")
 
-@app.route("/Charts")
+@app.route("/charts.html")
 def choropleth():
     return render_template('charts.html')
 
-@app.route("/News")
+@app.route("/News.html")
 def addNews():
     Data = Scrape.scrape_gas() 
     # collection.insert_one(Data)
@@ -118,6 +117,10 @@ def Years():
     histgasprices = session.query(HistGasPrices)
     
     return render_template('Years.html', histgasprices=histgasprices)
+
+@app.route("/test.html")
+def map():
+    return render_template('test.html')
 
 # @app.route("/Years")
 # def Years():
