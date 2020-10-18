@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Years</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
-	
-        <!-- Step 1 - Include the fusioncharts core library -->
-<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
-        <!-- Step 2 - Include the fusion theme -->
-<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<!-- <script type="text/javascript" src="/static/scripts/plotly/dependencies/d3.v3.min.js"></script> -->
-<!-- <script src="plotly-latest.min.js"></script> -->
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<!-- <script type="text/javascript" src="/static/scripts/plotly/dependencies/d3.v3.min.js"></script>
-<script type="text/javascript" src="/static/scripts/plotly/plotly.min.js"></script> --> 
-<!-- <link rel ="stylesheet" href ="style.css"> -->
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
-<script type="text/javascript">
-    var HistoricalData = {{ HistoricalData | safe}}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+
+    <!-- Step 1 - Include the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Step 2 - Include the fusion theme -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <!-- <script type="text/javascript" src="/static/scripts/plotly/dependencies/d3.v3.min.js"></script> -->
+    <!-- <script src="plotly-latest.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script type="text/javascript" src="/static/scripts/plotly/dependencies/d3.v3.min.js"></script>
+<script type="text/javascript" src="/static/scripts/plotly/plotly.min.js"></script> -->
+    <!-- <link rel ="stylesheet" href ="style.css"> -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    <script type="text/javascript">
+        var HistoricalData = {
+            {
+                HistoricalData | safe
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
+
 <body>
-
-
     <div class="container-fluid">
-        <div class="row" style=color:yellowgreen >
-            <div class="col-md-12 jumbotron text-center" >
-                <div class ="box">
-                    <marquee  behavior="scroll" direction="left">O Dat's Xpensif....Windows > Mac[Actually I Don't Care]...."Custom Made Ego Check".....</marquee>
+        <div class="row" style=color:yellowgreen>
+            <div class="col-md-12 jumbotron text-center">
+                <div class="box">
+                    <marquee behavior="scroll" direction="left">O Dat's Xpensif....Windows > Mac[Actually I Don't Care]...."Custom Made Ego Check".....</marquee>
                 </div>
 
             </div>
@@ -59,28 +63,28 @@
                 <aside class="filters">
                     <div class="panel panel-default">
                         <div class="panel-heading">Search Historical Regular Gasoline Data By Year</div>
-                            <div class="panel-body">
-                                <form method="POST">
+                        <div class="panel-body">
+                            <form method="POST">
                                 <input type="text" name="useryear"></input>
                                 <input type="submit" value="Submit"></input>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                </aside>
             </div>
+            </aside>
+        </div>
 
-            <div class="col-md-9">
-                <div>
-                <canvas  id="myChart" width="600" height="400"></canvas>
-                </div>
+        <div class="col-md-9">
+            <div>
+                <canvas id="myChart" width="600" height="400"></canvas>
             </div>
-            <!-- <div class="col-md-3 ">
+        </div>
+        <!-- <div class="col-md-3 ">
                 <div class ="box" >
                     <iframe src="https://giphy.com/embed/fLGsjiTGqNm0g" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>
                 </div>
             </div> -->
-        </div>  
+    </div>
     <!-- <div class="row">
         <div class ="col-md-2">
             <h5>Select Region:</h5>
@@ -94,8 +98,8 @@
              
     </div> -->
 
-        
-</div>
+
+    </div>
 
 
 
@@ -104,6 +108,7 @@
 
 
 
-<script type ="text/javascript " src="../static/js/stacked.js"></script>
+    <script type="text/javascript " src="../static/js/stacked.js"></script>
 </body>
+
 </html>

@@ -5,14 +5,13 @@ import json
 from sqlalchemy import create_engine, extract
 from sqlalchemy.orm import Session
 from init_db import HistGasPrices
-
-
-
-
+import choropleth
+import Scrape
+import requests
+import pymongo
 
 # create instance of Flask app
 app = Flask(__name__)
-
 
 # create route that renders index.html template
 @app.route("/", methods=["GET","POST"])
@@ -73,16 +72,16 @@ db = client.Gas_Data
 collection = db.State_Data
 
 @app.route("/charts.html")
-def choropleth():
+def stuff():
     return render_template('charts.html')
 
 @app.route("/News.html")
-
 def addNews():
     Data = Scrape.scrape_gas() 
     # collection.insert_one(Data)
     # Scrape_Data = Data.find_one()
     collection.replace_one({},Data,upsert=True)
+    return render_template('News.html', Gas_info=Data)
 
 # @app.route("/Charts")
 # def addnew():
@@ -99,14 +98,13 @@ def Years():
     engine = create_engine('sqlite:///gasdatabase.db')
     session = Session(engine)
     histgasprices = session.query(HistGasPrices)
-
-
     if request.method == "GET":
         currentyearprices = "2020"
         Query = histgasprices.filter(HistGasPrices.Year == currentyearprices)   
         for r in Query:
             Years = [r.Year for r in Query]
             Dates = [r.Date for r in Query]
+            Months = [r.Month for r in Query]
             NEPrices = [r.New_England_Prices for r in Query]
             CAPrices = [r.Central_Atlantic_Prices for r in Query]
             LAPrices = [r.Lower_Atlantic_Prices for r in Query]
@@ -116,15 +114,17 @@ def Years():
             WCPrices = [r.West_Coast_Prices for r in Query]
             NoCAPrices = [r.West_Coast_No_Cali_Prices for r in Query]
             
-        HistoricalData = {"Dates":Dates, "NEPrices":NEPrices, "CAPrices":CAPrices, "LAPrices":LAPrices,"MWPrices":MWPrices, "GFPrices":GFPrices, "RMPrices":RMPrices, "WCPrices":WCPrices, "NoCAPrices":NoCAPrices }
+        HistoricalData = {"Dates":Dates,"Months":Months , "NEPrices":NEPrices, "CAPrices":CAPrices, "LAPrices":LAPrices,"MWPrices":MWPrices, "GFPrices":GFPrices, "RMPrices":RMPrices, "WCPrices":WCPrices, "NoCAPrices":NoCAPrices }
         return render_template('Years.html', HistoricalData=HistoricalData)
     
     else: 
+        
         useryear = request.form['useryear']
         Query = histgasprices.filter(HistGasPrices.Year == useryear)
         for r in Query:
             Years = [r.Year for r in Query]
             Dates = [r.Date for r in Query]
+            Months = [r.Month for r in Query]
             NEPrices = [r.New_England_Prices for r in Query]
             CAPrices = [r.Central_Atlantic_Prices for r in Query]
             LAPrices = [r.Lower_Atlantic_Prices for r in Query]
@@ -134,14 +134,13 @@ def Years():
             WCPrices = [r.West_Coast_Prices for r in Query]
             NoCAPrices = [r.West_Coast_No_Cali_Prices for r in Query]
             
-        HistoricalData = {"Dates":Dates, "NEPrices":NEPrices, "CAPrices":CAPrices, "LAPrices":LAPrices,"MWPrices":MWPrices, "GFPrices":GFPrices, "RMPrices":RMPrices, "WCPrices":WCPrices, "NoCAPrices":NoCAPrices }
+        HistoricalData = {"Dates":Dates, "Months":Months,"NEPrices":NEPrices, "CAPrices":CAPrices, "LAPrices":LAPrices,"MWPrices":MWPrices, "GFPrices":GFPrices, "RMPrices":RMPrices, "WCPrices":WCPrices, "NoCAPrices":NoCAPrices }
         
         return render_template('Years.html', HistoricalData=HistoricalData)
 
-
-@app.route("/test.html")
+@app.route("/Map.html")
 def map():
-    return render_template('test.html')
+    return render_template('Map.html')
 
 # @app.route("/Years")
 # def Years():

@@ -18,22 +18,23 @@ def scrape_gas():
     browser = init_browser()
     browser.visit('https://www.eia.gov/petroleum/')
     Table = pd.read_html("https://www.eia.gov/petroleum/")
-    Table_df = Table[0]
-    Table_df.to_html("Table.html")
+    Table_df = Table[0].fillna(0)
+    Table = Table_df.to_html("Table.html")
     Table = Table_df.to_html(index=False).replace('\n','')
     Heading = browser.find_by_css('table[class="basic_table"]').find_by_tag('caption').text
 
     browser.visit("https://www.eia.gov/petroleum/gasdiesel/")
     Tables = pd.read_html("https://www.eia.gov/petroleum/gasdiesel/")
-    Gasoline_Tables = Tables[0]
-    Gasoline_Tables.to_html("Gasoline_Table.html")
+    Gasoline_Tables = Tables[0].fillna(0)
+    Gasoline_Table = Gasoline_Tables.to_html("Gasoline_Table.html")
     Gasoline_Table = Gasoline_Tables.to_html(index=False).replace('\n','')
     Gasoline_Heading =browser.find_by_css('div[class="table-wrapper"]').find_by_tag('caption').text
-    Diesel_Tables = Tables[1]
-    Diesel_Tables.to_html("Diesel_Table.html")
+
+    Diesel_Tables = Tables[1].fillna(0)
+    Diesel_Table = Diesel_Tables.to_html("Diesel_Table.html")
     Diesel_Table = Diesel_Tables.to_html(index=False).replace('\n','')
     Diesel_Heading = browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[4]/div[1]/div/div[1]/table[2]/caption").text
-    Diesel_Heading 
+    
     browser.visit("https://www.eia.gov/energyexplained/oil-and-petroleum-products/")
     Crude_Heading =browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/h2[1]").text
     Crude_Paragraph =browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/p[1]").text
@@ -54,7 +55,7 @@ def scrape_gas():
         "Gasoline_Heading" : Gasoline_Heading,
         "Gasoline_Table" : Gasoline_Table,
         "Diesel_Heading" :Diesel_Heading,
-        "Diesel_Table " : Diesel_Table ,
+        "Diesel_Table " : Diesel_Table,
         "Crude_Heading" :Crude_Heading,
         "Crude_Paragraph":Crude_Paragraph,
         "Crude_Image_1" : featured_image_url[0],
