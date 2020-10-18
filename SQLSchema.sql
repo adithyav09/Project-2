@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS hist_gas_prices;
 CREATE TABLE hist_gas_prices(
 	Date DATE PRIMARY KEY,
 	Year INTEGER,
+	Month VARCHAR(4),
 	New_England_Prices FLOAT,
 	Central_Atlantic_Prices FLOAT,
 	Lower_Atlantic_Prices FLOAT,

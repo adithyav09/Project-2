@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Float, Date, Integer
+from sqlalchemy import Column, Float, Date, Integer, String
 
 
 conn = sqlite3.connect('gasdatabase.db')
@@ -21,6 +21,7 @@ conn.commit()
 class HistGasPrices(Base):
     __tablename__ = 'hist_gas_prices'
     Date = Column(Integer, primary_key=True)
+    Month = Column(String)
     Year = Column(Integer)
     New_England_Prices = Column(Float)
     Central_Atlantic_Prices = Column(Float)
