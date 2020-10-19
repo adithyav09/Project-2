@@ -7,7 +7,8 @@ import time
 
 def init_browser():
 #Provided a path for the chrome driver
-    executable_path ={'executable_path':r'/usr/local/bin/chromedriver'}
+    executable_path ={'executable_path':r'C:\Users\sunandan\Downloads\chromedriver_win32\chromedriver.exe'}
+    # executable_path ={'executable_path':r'C:\Users\sunandan\Downloads\chromedriver_win32\chromedriver.exe'}
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     options.add_argument("--disable-notifications")
