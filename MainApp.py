@@ -1,3 +1,4 @@
+#Importing all the required libraries,files in the main file.
 import http.client
 from flask import Flask, render_template,redirect,request
 import sqlite3
@@ -60,9 +61,7 @@ def index():
         return render_template("index.html", Gasoline_data=Gdata)
 
 
-# @app.route("/charts.html")
-# def choropleth():
-#     return render_template('charts.html')
+
 # Initialize PyMongo to work with MongoDBs
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
@@ -82,15 +81,6 @@ def addNews():
     # Scrape_Data = Data.find_one()
     collection.replace_one({},Data,upsert=True)
     return render_template('News.html', Gas_info=Data)
-
-# @app.route("/Charts")
-# def addnew():
-#     return render_template('charts.html')
-
-# @app.route("/News")
-# def addNews():
-#     return render_template('News.html')
-
 
 
 @app.route("/Years", methods=["GET","POST"])
