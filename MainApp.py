@@ -13,6 +13,13 @@ import pymongo
 
 # create instance of Flask app
 app = Flask(__name__)
+# Initialize PyMongo to work with MongoDBs
+conn = 'mongodb://localhost:27017'
+client = pymongo.MongoClient(conn)
+
+# Define database and collection
+db = client.Gas_Data
+collection = db.State_Data
 
 # create route that renders index.html template
 @app.route("/", methods=["GET","POST"])
@@ -62,18 +69,13 @@ def index():
 
 
 
-# Initialize PyMongo to work with MongoDBs
-conn = 'mongodb://localhost:27017'
-client = pymongo.MongoClient(conn)
-
-# Define database and collection
-db = client.Gas_Data
-collection = db.State_Data
+ 
 
 @app.route("/charts.html")
-def stuff():
+def chart():
     return render_template('charts.html')
 
+# The route that will scrape all the data and render it to News.html
 @app.route("/News.html")
 def addNews():
     Data = Scrape.scrape_gas() 
@@ -82,7 +84,7 @@ def addNews():
     collection.replace_one({},Data,upsert=True)
     return render_template('News.html', Gas_info=Data)
 
-
+# This route will have all the historical data and the chart for it.
 @app.route("/Years", methods=["GET","POST"])
 def Years():
     engine = create_engine('sqlite:///gasdatabase.db')
@@ -128,18 +130,11 @@ def Years():
         
         return render_template('Years.html', HistoricalData=HistoricalData)
 
+# This route will have the US Map with all the prices updated on a daily basis for each state......
 @app.route("/Map.html")
 def map():
     return render_template('Map.html')
 
-# @app.route("/Years")
-# def Years():
-#     conn = get_db_connection()
-#     currentprices = conn.execute('SELECT * FROM hist_gas_prices WHERE Date LIKE 2020*').fetchall()
-#     histprices = conn.execute('SELECT * FROM hist_gas_prices WHERE Date LIKE ' + yearinput + '*').fetchall()
-#     conn.close()
-#     yearinput = request.form['text']
-#     return render_template('Years.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

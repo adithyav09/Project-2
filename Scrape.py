@@ -1,3 +1,4 @@
+# Importing all the required libraries
 from bs4 import BeautifulSoup
 from splinter import Browser
 from selenium import webdriver
@@ -15,6 +16,7 @@ def init_browser():
     return Browser('chrome',**executable_path,headless=False,options=options)
     time.sleep(1)
 
+# Defining a scrape function which will perform all the actions from starting the browser to scraping all info needed.
 def scrape_gas():
     browser = init_browser()
     browser.visit('https://www.eia.gov/petroleum/')
@@ -23,11 +25,13 @@ def scrape_gas():
     Table = Table_df.to_html("Table.html")
     Table = Table_df.to_html(index=False).replace('\n','')
     Heading = browser.find_by_css('table[class="basic_table"]').find_by_tag('caption').text
-
     browser.visit("https://www.eia.gov/petroleum/gasdiesel/")
+
+# Scraping all the tables on the page 
     Tables = pd.read_html("https://www.eia.gov/petroleum/gasdiesel/")
     Gasoline_Tables = Tables[0].fillna(0)
     Gasoline_Table = Gasoline_Tables.to_html("Gasoline_Table.html")
+# Removing index from the table and replacing null values with 0.
     Gasoline_Table = Gasoline_Tables.to_html(index=False).replace('\n','')
     Gasoline_Heading =browser.find_by_css('div[class="table-wrapper"]').find_by_tag('caption').text
 
@@ -37,9 +41,12 @@ def scrape_gas():
     Diesel_Heading = browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[4]/div[1]/div/div[1]/table[2]/caption").text
     
     browser.visit("https://www.eia.gov/energyexplained/oil-and-petroleum-products/")
+
+# Scraping with the help of XPath...............................................
     Crude_Heading =browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/h2[1]").text
     Crude_Paragraph =browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/p[1]").text
     Crude_Paragraph2= browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/p[2]").text
+#Scraping with css................................................................
     find_image=browser.find_by_css('div[class="article-image-slide"] img')
     featured_image_url = [];
     for i in find_image:
@@ -50,6 +57,7 @@ def scrape_gas():
         Second_Last_Paragraph = browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/p[3]").text
         Last_Paragraph =browser.find_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div[2]/div[1]/p[4]").text
 
+# Defining the dictionary that will have all the Scraping material
     Dict = {
         "Heading":Heading,
         "Table":Table,
